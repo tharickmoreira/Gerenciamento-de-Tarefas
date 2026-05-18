@@ -1,0 +1,46 @@
+{
+  "entities": {
+    "Project": {
+      "title": "Project",
+      "description": "A workspace or space containing multiple tasks",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Project name" },
+        "description": { "type": "string", "description": "Project description" },
+        "ownerId": { "type": "string", "description": "UID of the user who created the project" },
+        "members": { "type": "array", "description": "List of user UIDs who have access" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "ownerId", "members", "createdAt", "updatedAt"]
+    },
+    "Task": {
+      "title": "Task",
+      "description": "A single piece of work within a project",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Task summary" },
+        "description": { "type": "string", "description": "Detailed description" },
+        "projectId": { "type": "string", "description": "Reference to parent Project" },
+        "status": { "type": "string", "enum": ["todo", "in-progress", "done"], "description": "Current workflow state" },
+        "priority": { "type": "string", "enum": ["low", "medium", "high", "urgent"], "description": "Task priority" },
+        "assigneeId": { "type": "string", "description": "UID of the assigned user" },
+        "creatorId": { "type": "string", "description": "UID of the task creator" },
+        "dueDate": { "type": "string", "format": "date-time" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "projectId", "status", "priority", "creatorId", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "projects": {
+      "schema": "Project",
+      "description": "Global projects collection"
+    },
+    "projects/{projectId}/tasks": {
+      "schema": "Task",
+      "description": "Tasks scoped to a project"
+    }
+  }
+}

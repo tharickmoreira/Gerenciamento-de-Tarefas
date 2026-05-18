@@ -1,0 +1,6 @@
+{
+  "name": "ClickFlow",
+  "description": "A professional task management and project tracking platform with workspaces, Kanban boards, and real-time status updates.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
